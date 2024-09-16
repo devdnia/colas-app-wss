@@ -4,22 +4,23 @@ import { TicketController } from './controller';
 
 export class TicketRoutes {
 
-    static get routes(){
+    static get routes() {
 
         const router = Router();
         const ticketController = new TicketController();
 
-        router.get('/')
-        router.get('/last')
-        router.get('/pending')
+        router.get('/', ticketController.getTickets );
+        router.get('/last', ticketController.getLastTicketNumber);
+        router.get('/pending', ticketController.pendingTickets);
 
 
-        router.post('/')
+        router.post('/', ticketController.createTicket);
 
-        router.get('draw/:desk')
-        router.put('/done/:ticketId')
+        router.get('/desk/:desk', ticketController.desk );
+        // router.get('/prueba/:prueba', ticketController.prueba );
+        router.put('/done/:ticketId', ticketController.ticketFinished);
 
-        router.get('/working-on')
+        router.get('/working-on', ticketController.workingOn);
 
 
         return router;
